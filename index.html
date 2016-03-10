@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Angular-progressbar by aaroncalderon</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Angular-progressbar</h1>
+        <p>Progressbar.js support for AngularJS http://kimmobrunfeldt.github.io/progressbar.js/</p>
+
+        <p class="view"><a href="https://github.com/aaroncalderon/angular-progressbar">View the Project on GitHub <small>aaroncalderon/angular-progressbar</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/aaroncalderon/angular-progressbar/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/aaroncalderon/angular-progressbar/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/aaroncalderon/angular-progressbar">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="how-to" class="anchor" href="#how-to" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to...</h1>
+
+<h2>
+<a id="setup-javascript" class="anchor" href="#setup-javascript" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Setup JavaScript</h2>
+
+<p>On JavaScript, add the module as a dependency: </p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">angular</span>.<span class="pl-en">module</span>(<span class="pl-s"><span class="pl-pds">'</span>demo<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">'</span>angularProgressbar<span class="pl-pds">'</span></span>]);</pre></div>
+
+<h2>
+<a id="setup-html" class="anchor" href="#setup-html" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Setup HTML</h2>
+
+<p>On HTML, add the corresponding directive tag e.g.:</p>
+
+<div class="highlight highlight-text-html-basic"><pre><span class="pl-c">&lt;!-- element form works --&gt;</span>
+&lt;<span class="pl-ent">pb</span><span class="pl-e">-line</span> <span class="pl-e">progress-key</span>=<span class="pl-s"><span class="pl-pds">"</span>myLine<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">pb</span><span class="pl-e">-line</span>&gt;
+&lt;<span class="pl-ent">pb</span><span class="pl-e">-circle</span> <span class="pl-e">progress-key</span>=<span class="pl-s"><span class="pl-pds">"</span>myCircle<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">pb</span><span class="pl-e">-circle</span>&gt;
+&lt;<span class="pl-ent">pb</span><span class="pl-e">-square</span> <span class="pl-e">progress-key</span>=<span class="pl-s"><span class="pl-pds">"</span>mySquare<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">pb</span><span class="pl-e">-square</span>&gt;
+&lt;<span class="pl-ent">pb</span><span class="pl-e">-path</span> <span class="pl-e">progress-key</span>=<span class="pl-s"><span class="pl-pds">"</span>myPath<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">pb</span><span class="pl-e">-path</span>&gt;
+<span class="pl-c">&lt;!-- attribute form works too --&gt;</span>
+&lt;<span class="pl-ent">div</span> <span class="pl-e">pb-circle</span> <span class="pl-e">progress-key</span>=<span class="pl-s"><span class="pl-pds">"</span>myCircleDiv<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+<span class="pl-c">&lt;!-- I believe all forms work --&gt;</span></pre></div>
+
+<p>The <code>progress-key</code> parameter is required.</p>
+
+<h2>
+<a id="passing-options-to-directive" class="anchor" href="#passing-options-to-directive" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Passing <em>options</em> to directive</h2>
+
+<p>So far, to pass options you do the flowing, on the controller set a variable in the $scope to use as the options. In my case I named it options so I set <code>$scope.options</code>. You can set, say, <code>$scope.circleOptions</code> if you wish.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">angular</span>.<span class="pl-en">module</span>(<span class="pl-s"><span class="pl-pds">'</span>demo<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">'</span>angularProgressbar<span class="pl-pds">'</span></span>])
+.<span class="pl-en">controller</span>(<span class="pl-s"><span class="pl-pds">'</span>demoCtrl<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">'</span>$scope<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>$pbService<span class="pl-pds">'</span></span>,  
+                <span class="pl-k">function</span>( <span class="pl-smi">$scope</span>,   <span class="pl-smi">$pbService</span> ){
+    <span class="pl-smi">$scope</span>.<span class="pl-c1">options</span> <span class="pl-k">=</span> {
+        color<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#FCB03C<span class="pl-pds">'</span></span>,
+        duration<span class="pl-k">:</span> <span class="pl-c1">3000</span>,
+        easing<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>easeInOut<span class="pl-pds">'</span></span>};
+    <span class="pl-smi">$scope</span>.<span class="pl-smi">circleOptions</span> <span class="pl-k">=</span> {
+        color<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#FCBB33<span class="pl-pds">'</span></span>,
+        duration<span class="pl-k">:</span> <span class="pl-c1">2000</span>,
+        easing<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>easeInOut<span class="pl-pds">'</span></span>};
+}]);</pre></div>
+
+<p>In the HTML you add an attribute called <code>options</code> and you put the scope variable as the value. </p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">pb</span><span class="pl-e">-line</span> <span class="pl-e">progress-key</span>=<span class="pl-s"><span class="pl-pds">"</span>myLine<span class="pl-pds">"</span></span> <span class="pl-e">options</span>=<span class="pl-s"><span class="pl-pds">"</span>options<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">pb</span><span class="pl-e">-line</span>&gt;
+<span class="pl-c">&lt;!--  or, if your variable is called 'lineOptions' in your scope then --&gt;</span>\
+&lt;<span class="pl-ent">pb</span><span class="pl-e">-circle</span> <span class="pl-e">progress-key</span>=<span class="pl-s"><span class="pl-pds">"</span>myLine<span class="pl-pds">"</span></span> <span class="pl-e">options</span>=<span class="pl-s"><span class="pl-pds">"</span>circleOptions<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">pb</span><span class="pl-e">-circle</span>&gt;</pre></div>
+
+<h2>
+<a id="animate-set-or-stop" class="anchor" href="#animate-set-or-stop" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>animate</code>, <code>set</code>, or <code>stop</code>
+</h2>
+
+<p>Turns out that you can handle the animate, set or stop through the controller, e.g.: </p>
+
+<h3>
+<a id="javascript" class="anchor" href="#javascript" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Javascript</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">angular</span>.<span class="pl-en">module</span>(<span class="pl-s"><span class="pl-pds">'</span>demo<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">'</span>angularProgressbar<span class="pl-pds">'</span></span>])
+.<span class="pl-en">controller</span>(<span class="pl-s"><span class="pl-pds">'</span>demoCtrl<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">'</span>$scope<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>$pbService<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>$timeout<span class="pl-pds">'</span></span>,  
+                <span class="pl-k">function</span>( <span class="pl-smi">$scope</span>,   <span class="pl-smi">$pbService</span>,   <span class="pl-smi">$timeout</span> ){
+    <span class="pl-smi">$scope</span>.<span class="pl-c1">options</span> <span class="pl-k">=</span> {
+        color<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#FCB03C<span class="pl-pds">'</span></span>,
+        duration<span class="pl-k">:</span> <span class="pl-c1">3000</span>,
+        easing<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>easeInOut<span class="pl-pds">'</span></span>
+    };
+    <span class="pl-smi">$scope</span>.<span class="pl-smi">lineProgress</span> <span class="pl-k">=</span> <span class="pl-c1">0</span>;
+
+    <span class="pl-c1">$scope</span>.<span class="pl-en">animateLine</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(){
+        <span class="pl-smi">$scope</span>.<span class="pl-smi">lineProgress</span> <span class="pl-k">=</span> <span class="pl-smi">$scope</span>.<span class="pl-smi">lineProgress</span> <span class="pl-k">+</span> <span class="pl-c1">.05</span>; 
+        <span class="pl-smi">$pbService</span>.<span class="pl-en">animate</span>(<span class="pl-s"><span class="pl-pds">'</span>myLine<span class="pl-pds">'</span></span>, <span class="pl-smi">$scope</span>.<span class="pl-smi">lineProgress</span>, <span class="pl-smi">$scope</span>.<span class="pl-c1">options</span>);
+    };
+    <span class="pl-c1">$scope</span>.<span class="pl-en">setLine</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(){ 
+        <span class="pl-smi">$scope</span>.<span class="pl-smi">lineProgress</span> <span class="pl-k">=</span> <span class="pl-smi">$scope</span>.<span class="pl-smi">lineProgress</span> <span class="pl-k">+</span> <span class="pl-c1">.05</span>; 
+        <span class="pl-smi">$pbService</span>.<span class="pl-en">set</span>(<span class="pl-s"><span class="pl-pds">'</span>myCircle<span class="pl-pds">'</span></span>, <span class="pl-smi">$scope</span>.<span class="pl-smi">lineProgress</span>);
+    };
+    <span class="pl-en">$timeout</span>(<span class="pl-k">function</span>() {
+        <span class="pl-smi">$scope</span>.<span class="pl-en">setLine</span>();
+        <span class="pl-smi">$scope</span>.<span class="pl-en">animateLine</span>();
+        <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>update progress bar<span class="pl-pds">'</span></span>)
+    }, <span class="pl-c1">3000</span>);
+}]);</pre></div>
+
+<h3>
+<a id="html" class="anchor" href="#html" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>HTML</h3>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">body</span> <span class="pl-e">ng-app</span>=<span class="pl-s"><span class="pl-pds">"</span>demo<span class="pl-pds">"</span></span> <span class="pl-e">ng-controller</span>=<span class="pl-s"><span class="pl-pds">"</span>demoCtrl<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>container<span class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">h2</span>&gt;angular-progressbar.js samples&lt;/<span class="pl-ent">h2</span>&gt;
+        &lt;<span class="pl-ent">button</span> <span class="pl-e">ng-click</span>=<span class="pl-s"><span class="pl-pds">"</span>animateLine()<span class="pl-pds">"</span></span>&gt;animate line to +5%s&lt;/<span class="pl-ent">button</span>&gt;
+        &lt;<span class="pl-ent">button</span> <span class="pl-e">ng-click</span>=<span class="pl-s"><span class="pl-pds">"</span>setLine()<span class="pl-pds">"</span></span>&gt;set line to +5%s&lt;/<span class="pl-ent">button</span>&gt; Current progress value: {{lineProgress}}
+        &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>width<span class="pl-pds">"</span></span>&gt;
+&lt;<span class="pl-ent">pb</span><span class="pl-e">-line</span> <span class="pl-e">progress-key</span>=<span class="pl-s"><span class="pl-pds">"</span>myLine<span class="pl-pds">"</span></span> <span class="pl-e">options</span>=<span class="pl-s"><span class="pl-pds">'</span>options<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">pb</span><span class="pl-e">-line</span>&gt;
+&lt;<span class="pl-ent">pb</span><span class="pl-e">-circle</span> <span class="pl-e">progress-key</span>=<span class="pl-s"><span class="pl-pds">"</span>myCircle<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">pb</span><span class="pl-e">-circle</span>&gt;
+        &lt;/<span class="pl-ent">div</span>&gt;
+    &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">body</span>&gt;</pre></div>
+
+<h2>
+<a id="event-set-is-broken" class="anchor" href="#event-set-is-broken" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Event <code>set</code> is broken</h2>
+
+<p>Please note that the event <code>set</code> is currently broken because of line <a href="https://github.com/felipecamposclarke/angular-progressbar/blob/master/angular-progressbar.js#L30">30</a>.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">$rootScope</span>.<span class="pl-en">$broadcast</span>(<span class="pl-s"><span class="pl-pds">'</span>progressbar:stop<span class="pl-pds">'</span></span>, key, progress);</pre></div>
+
+<p>sould be</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">$rootScope</span>.<span class="pl-en">$broadcast</span>(<span class="pl-s"><span class="pl-pds">'</span>progressbar:set<span class="pl-pds">'</span></span>, key, progress);</pre></div>
+
+<p>Fiddle coming soon...</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/aaroncalderon">aaroncalderon</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
